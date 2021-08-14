@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A coding Project by Jose Tellez</title>
+    <title>The 100 Ninja: A coding Project by Jose Tellez</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
 <!--Nav Section-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/default-monochrome-white-icon.svg" width="60" height="24" class="d-inline align-text-bottom"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="img/default-monochrome-white-icon.svg" width="60" height="24" class="d-inline align-text-bottom"> The 100 Ninja</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
                     <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/Rhaegar2012/Hondo">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="https://josetellezdev.netlify.app/">About</a>
@@ -53,22 +53,97 @@
 <!--Main Section-->
 <main class="flex-shrink-0">
     <div class="container">
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for 100 Ninja</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-javascript">
-                        //Call Hello World 
-                        function HelloWorld(){
-                            alert("hello world");
+                        //get the values from the interface form
+                        //start or controller function
+                        function getValues(){
+                            //Get values from the page 
+                            let startValue=document.getElementById("startValue").value;
+                            let endValue=document.getElementById("endValue").value;
+                            let numbers=[];
+                            //Reset startvalue to parse as int
+                            startValue=parseInt(startValue);
+                            endValue=parseInt(endValue);
+                            //Checks if the start and end values are integers and calls generateNumbers()
+                            if(Number.isInteger(startValue) && Number.isInteger(endValue)){
+                                 //We call generateNumbers
+                                 numbers=generateNumbers(startValue, endValue);
+                        
+                            }else{
+                                alert("Must enter integers");
+                            }
+                           
+                            //We call displayNumbers 
+                            displayNumbers(numbers);
+                        
+                        
                         }
+                        //generate numbers from the start value to the end value
+                        //get values from the page 
+                        function generateNumbers(svalue, evalue){
+                            let numbers=[];
+                            //get all numbers from start to end 
+                            for(let i=svalue; i<=evalue;i++){
+                                numbers.push(i);
+                            }
+                        
+                            return numbers;
+                        }
+                        //display the numbers and mark the even numbers bold
+                        function displayNumbers(numbers){
+                            //Format variable for table strings
+                            let templateRows="";
+                            for(let i=0; i < numbers.length;i++){
+                                let className="even";
+                                let element=numbers[i];
+                                if(element %2==0){
+                                    className="even";
+                        
+                                }else{
+                                    className="odd";
+                                }
+                                //Concatenate with the template literal of an HTML row
+                                templateRows+=`&lt;tr>&lt;td class="${className}" >${number}&lt;/td>&lt;/tr>;
+                            }
+                            //Populate html table from app page , calls by table id
+                            document.getElementById("results").innerHTML=templateRows;
+                        
+                        }                        
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p> The Code is structed in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <p> The Code is structed in three distinct functions</p>
+                <h5>Get Values</h5>
+                <p>Get values is an start function that is called from the UI to collect the start value and end value inputs from the html
+                    form and converts them to integers in order to be operated, it also calls the functions generateNumbers() and displayNumbers()
+                    to complete the program 
+                </p>
+                <h5>Generate Numbers</h5>
+                <p>
+                    Input:<br> 
+                    integer- Start Value,integer -End Value<br>
+                    Function:<br>
+                    Generate numbers is a loop with start and end values given by the user. In addition to generating the numbers, the program will 
+                    store them into an array called numbers<br>
+                    Output:<br>
+                    integer array -numbers 
+                </p>
+                <h5>Display Numbers</h5>
+                <p>
+                    Input:<br>
+                    integer array -numbers
+                    Function:<br>
+                    Loop over the number array and identify the even and odd values using the modulo (%)
+                    operator. The function also generates the html code required to complete the table number
+                    in the UI<br> 
+                    Output: <br>
+                    None 
+                </p>
             </div>
         </div>
     </div>
